@@ -4,11 +4,11 @@
 
 1. Öffne deinen Webbrowser und gehe auf [https://code.visualstudio.com/](https://code.visualstudio.com/).
 2. Klicke auf **Download for Windows** (oder wähle dein Betriebssystem).
-3. Starte die heruntergeladene Installationsdatei und folge den Anweisungen.
+3. Starte die heruntergeladene Installationsdatei und folge den Anweisungen.  
 4. Nach der Installation öffne Visual Studio Code.
 
 ## Git und GitHub einrichten
-
+TODO: Software Center -> check für Git und Github Desktop
 1. Installiere [Git für Windows](https://git-scm.com/download/win) (oder für dein Betriebssystem).
 2. Starte die Installationsdatei und folge den Anweisungen.
 3. Öffne Visual Studio Code.
