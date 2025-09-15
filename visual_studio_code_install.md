@@ -1,4 +1,4 @@
-# Anleitung: Installation von Visual Studio Code, PlatformIO und Wokwi Simulator
+# Anleitung: Installation von Visual Studio Code, Git, PlatformIO, und Wokwi
 
 ## Visual Studio Code installieren
 
