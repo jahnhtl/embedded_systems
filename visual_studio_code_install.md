@@ -20,7 +20,7 @@
 
 **Hinweis:** Nach der Installation kannst du direkt aus Visual Studio Code mit Git und GitHub arbeiten.
 
-## PlatformIO Plugin installieren
+## PlatformIO IDE Plugin installieren
 
 1. Öffne Visual Studio Code.
 2. Klicke links auf das **Erweiterungen-Symbol** (Quadrat mit vier kleinen Quadraten).
@@ -28,10 +28,10 @@
 4. Klicke auf **Installieren** beim PlatformIO IDE Plugin.
 5. Nach der Installation erscheint ein neues PlatformIO-Symbol in der linken Seitenleiste.
 
-## Wokwi Plugin installieren
+## Wokwi Simulator Plugin installieren
 
 1. Gehe erneut zum **Erweiterungen-Symbol** in Visual Studio Code.
-2. Suche nach **Wokwi**.
+2. Suche nach **Wokwi Simulator**.
 3. Klicke auf **Installieren** beim Wokwi Plugin.
 4. Nach der Installation kannst du Wokwi direkt in Visual Studio Code verwenden.
 
@@ -39,7 +39,7 @@
 
 ### Wokwi Lizenz manuell hinterlegen
 
-1. Besuche die [Wokwi Lizenz-Seite](https://wokwi.com/licenses) und melde dich mit deinem Wokwi-Konto an.
+1. Besuche die [Wokwi Lizenz-Seite](https://wokwi.com/license) und melde dich mit deinem Wokwi-Konto an.
    Falls du noch kein Wokwi-Konto hast, erstelle zunächst ein neues Konto auf der Wokwi Lizenz-Seite.
 2. Erstelle eine **gratis** 30-Tage Lizenz und kopiere den Lizenzschlüssel aus deinem Wokwi-Konto.
 3. Falls Visual Studio Code deinen Lizenzschlüssel nicht automatisch erkennt, drücke **F1** in Visual Studio Code. Gib anschließend **Wokwi: Manually Enter License Key** ein und füge den Lizenzschlüssel ein.
