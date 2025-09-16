@@ -17,25 +17,37 @@ Git ist ein Programm, mit dem du Änderungen an Dateien speichern und verwalten 
 
 ---
 
-## Schritt 1: GitHub Account erstellen
 
-1. Gehe auf [github.com](https://github.com).
-2. Klicke auf "Sign up" und folge den Anweisungen.
-3. Bestätige deine E-Mail-Adresse.
-
----
-
-## Schritt 2: Ein Repository clonen und testen
+## Schritt 1: Ein Repository clonen und compilieren (builden)
 
 Wir nutzen das Beispielprojekt [Arduino-simon-game](https://github.com/wokwi/arduino-simon-game/tree/main).
 
 1. Öffne Visual Studio Code.
 2. Öffne das Terminal (`Strg + ö` oder `Strg + Shift + P` und "Terminal öffnen").
-3. Gib ein:
+3. Wechsle nun in das Verzeichnis in das das Projekt kopiert werden soll. Dazu tipp ein (für das Schul-setup):
+    ```bash
+    Z:              # wechlse auf das Laufwerk Z
+    cd 5AAELI       # change directory - wechselt in das Verzeichnis 5AAELI
+                    # (ersetze 5AAELI mit dem passenden vorhandenen Ordner)
+    mkdir ESY       # erstellt einen neuen Ordner ESY
+    cd ESY          # wechselt in den Ordner ESY
+
+    # das Terminal zeigt nun an Z:\5AAELI\ESY
+    ```
+4. Alternativ erstelle über den Windows Explorer den gewünschten Ordner - klicke oben in die Adressezeile und kopiere den gesamten Pfad (*STRG + C*) und tippe:
+    ```bash
+    cd Z:\5AAELI\ESY  # wiederum change directory und den Pfad einfügen mit STRG+V
+
+    # das Terminal zeigt nun wiederuman Z:\5AAELI\ESY
+    ```
+5. Gib ein um das Repository von Github lokal zu kopieren (= clonen)
     ```bash
     git clone https://github.com/wokwi/arduino-simon-game.git
     ```
-4. Öffne den Ordner in VS Code.
+6. Öffne den Ordner in VS Code. Klicke dazu auf **Menü -> File -> OpenFolder**
+7. Um das **Projekt zu kompilieren** klicke in der Statuszeile auf das Häkchen-Symbol („Build“) oder wähle im PlatformIO-Menü Build aus. Alternativ kannst du Ctrl + Alt + B drücken.
+
+**Hinweis:** Wenn mehrere Ordner geöffnet werden soll wählen Sie **Add Folder to Workspace**.
 
 ### Wokwi Simulator-Code direkt in Visual Studio Code ausführen
 
@@ -43,14 +55,15 @@ Mit der Wokwi-Erweiterung für Visual Studio Code kannst du Arduino-Projekte dir
 
 1. Installiere die [Wokwi VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Wokwi.wokwi-vscode).
 2. Öffne das geklonte Projekt in VS Code.
-3. Klicke auf das Wokwi-Symbol in der Seitenleiste.
-4. Wähle "Simulate Project" aus.
+3. Kompiliere das Projekt
+4. Drücke **F1** oder **Ctrl+Shift+P**, um die Befehlspalette zu öffnen.
+5. Tippe **Wokwi** und wähle **Wokwi: Start Simulator** aus
 5. Der Simulator startet und zeigt dein Projekt direkt im Editor an.
 
 So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 ---
 
-## Schritt 3: Eigenes Repository "Blinking LED" auf GitHub erstellen
+## Schritt 2: Eigenes Repository "Blinking LED" auf GitHub erstellen
 
 ### Repo auf GitHub erstellen
 
@@ -155,7 +168,7 @@ Damit kannst du Änderungen einfach und übersichtlich ohne Terminal verwalten.
 
 ---
 
-## Schritt 4: Beispiel "Blinking_LED_millis" mit PlatformIO lokal in VS Code erstellen und auf GitHub hochladen
+## Schritt 3: Beispiel "Blinking_LED_millis" mit PlatformIO lokal in VS Code erstellen und auf GitHub hochladen
 
 1. Öffne Visual Studio Code und installiere die PlatformIO-Erweiterung.
 2. Klicke in der PlatformIO-Seitenleiste auf **"New Project"**.

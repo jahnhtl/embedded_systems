@@ -4,12 +4,22 @@
 
 
 ## Visual Studio Code installieren
+
 1. Öffne deinen Webbrowser und gehe auf [https://code.visualstudio.com/](https://code.visualstudio.com/).
 2. Klicke auf **Download for Windows** (oder wähle dein Betriebssystem).
 3. Starte die heruntergeladene Installationsdatei und folge den Anweisungen.  
 4. Nach der Installation öffne Visual Studio Code.
 
+
+## GitHub Account erstellen
+
+1. Gehe auf [github.com](https://github.com).
+2. Klicke auf "Sign up" und folge den Anweisungen.
+3. Bestätige deine E-Mail-Adresse.
+
+
 ## Git und GitHub einrichten
+
 1. Installiere [Git für Windows](https://git-scm.com/download/win) (oder für dein Betriebssystem).
 2. Starte die Installationsdatei und folge den Anweisungen.
 3. Öffne Visual Studio Code.
@@ -22,6 +32,7 @@
 **Hinweis:** Nach der Installation kannst du direkt aus Visual Studio Code mit Git und GitHub arbeiten.
 
 **Tipp:** Überprüfe die erfolgreiche Installation, indem du im Terminal (Eingabeaufforderung) den Befehl `git --version` eingibst. Möglicherweise ist ein Neustart deines Computers notwendig.
+
 
 ## GitHub Desktop installieren
 
