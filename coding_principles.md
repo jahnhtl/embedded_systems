@@ -8,7 +8,7 @@ Dieses Merkblatt bietet eine kompakte Grundlage für das Schreiben von solidem C
 
 ### 1.1 Konsistenz und Formatierung
 
-**Richtlinie:** Einheitliches Layout verwenden (Einrückungen, Klammern, Zeilenlängen, Leerzeichen, Kommentare). Ein konsistenter Stil erleichtert das Lesen und Warten erheblich.
+**Richtlinie:** Einheitliches Layout verwenden (Einrückungen, Zeilenlängen, Leerzeichen, Kommentare). Ein konsistenter Stil erleichtert das Lesen und Warten erheblich.
 
 **Gutes Beispiel**
 
@@ -28,18 +28,58 @@ int max(int a, int b) {
 int max( int a,int b)
 {
 if(a>b){return a;} return b; }
+
+int max(int a, int b)
+{
+if(a>b)
+    {
+return a;
+}
+    return b;
+}
 ```
 
 ---
 
-### 1.2 Sprechende Namen
+### 1.2 Konsistenter Stil: Allman vs. K&R Klammersetzung, snake_case vs. camelCase
 
-**Richtlinie:** Aussagekräftige, konsistente Namen für Variablen, Funktionen und Typen vergeben. 
+**Richtlinie:** Stil (Klammer- und Namenskonvention) im gesamten Projekt einheitlich wählen und durchhalten.
+
+**Allman-Style mit snake_case (einheitlich):**
+```c
+int berechne_summe(int erste_zahl, int zweite_zahl)
+{
+    return erste_zahl + zweite_zahl;
+}
+```
+
+**K&R-Style mit camelCase (einheitlich):**
+```c
+int berechneSumme(int ersteZahl, int zweiteZahl) {
+    return ersteZahl + zweiteZahl;
+}
+```
+
+**Schlechtes Beispiel (Mischung):**
+```c
+int berechneSumme(int erste_zahl, int zweiteZahl)
+{
+    return erste_zahl + zweiteZahl;
+}
+
+int diff(int zahl_1, int zahl2) {
+    return zahl_1 - zahl2;
+}
+```
+
+### 1.3 Sprechende Namen
+
+**Richtlinie:** Aussagekräftige, konsistente Namen für Variablen, Funktionen und Typen vergeben.
 
 **Gutes Beispiel**
 
 ```c
-int berechne_durchschnitt_temperatur(const int *werte, size_t anzahl);
+int berechne_durchschnitt_temperatur(const int *werte, int anzahl);
 int anzahl_sensoren = 4;
 ```
 
@@ -52,7 +92,7 @@ int x = 4; // Was ist x?
 
 ---
 
-### 1.3 Kommentare
+### 1.4 Kommentare
 
 **Richtlinie:** Das *Warum* und *Was* dokumentieren, nicht das Offensichtliche. Kommentare aktuell halten.
 
@@ -70,20 +110,20 @@ float filter_mittel(float neuer_wert) {
 **Schlechtes Beispiel**
 
 ```c
-int i = i + 1; // i um 1 erhöhen (überflüssig)
+i = i + 1; // i um 1 erhöhen (überflüssig)
 ```
 
 ---
 
-### 1.4 Funktionen / Module
+### 1.5 Funktionen / Module
 
 **Richtlinie:** Probleme in kleine, fokussierte Funktionen/Module zerlegen. Jede Funktion erfüllt eine klar umrissene Aufgabe.
 
 **Gutes Beispiel**
 
 ```c
-bool lese_datei(const char *pfad, char *puffer, size_t groesse);
-size_t zaehle_zeilen(const char *puffer);
+bool lese_datei(const char *pfad, char *puffer, int groesse);
+int zaehle_zeilen(const char *puffer);
 ```
 
 **Schlechtes Beispiel**
@@ -95,16 +135,23 @@ int process(const char *f) { /* 200+ Zeilen */ }
 
 ---
 
-### 1.5 Vermeidung von magischen Zahlen
+### 1.6 Vermeidung von magischen Zahlen
 
 **Richtlinie:** Hart kodierte Zahlen durch Konstanten, Enums oder Makros mit Bedeutung ersetzen.
 
 **Gutes Beispiel**
 
 ```c
-#define MAX_PUFFER 256  // alternativ enum oder Konstante verwenden
+#define MAX_PUFFER 256 // defines immer in Großbuchstaben damit sind sie immer klar als solche erkennbar
 
 char puffer[MAX_PUFFER];
+```
+
+```c
+// alternativ Konstante verwenden, hat den Vorteil das der Datentyp definiert ist
+const int max_puffer = 256;
+
+char puffer[max_puffer];
 ```
 
 **Schlechtes Beispiel**
@@ -115,7 +162,7 @@ char puffer[256]; // Warum 256? Was wenn man es hier anpasst? Wo noch?
 
 ---
 
-### 1.6 Fehlerbehandlung
+### 1.7 Fehlerbehandlung
 
 **Richtlinie:** Rückgabewerte prüfen, Fehler kontrolliert behandeln und nützliche Diagnosen ausgeben.
 
@@ -141,7 +188,7 @@ FILE *fp = fopen("daten.txt", "r");
 
 ---
 
-### 1.7 Compiler-Warnungen
+### 1.8 Compiler-Warnungen
 
 **Richtlinie:** Mit "strengen" Warnungen ("-Wall") kompilieren und diese sofort beheben.
 
@@ -149,9 +196,9 @@ FILE *fp = fopen("daten.txt", "r");
 
 ```c
 // Kompilieren (z. B. mit GCC/Clang): -Wall -Wextra -Werror
-int summe(const int *a, size_t n) {
+int summe(const int *a, int n) {
     int s = 0;
-    for (size_t i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         s += a[i];
     }
     return s;
@@ -168,6 +215,79 @@ int summe(int *a, int n) {
 }
 ```
 
+### 1.9 Globale Variablen vs. Parameterübergabe (Pointer)
+
+**Richtlinie:** Globale Variablen vermeiden, da sie die Wartbarkeit und Testbarkeit erschweren. Stattdessen lokale Variablen oder Übergabe per Parameter (Pointer) bevorzugen.
+
+**Gutes Beispiel**
+
+```c
+int berechne_summe(const int *werte, int anzahl); // Werte werden übergeben
+```
+
+**Schlechtes Beispiel**
+
+```c
+int werte[10]; // global definiert
+int berechne_summe(void) { /* nutzt globale Variable */ }
+```
+
+### 1.10 Globale vs. lokale statische Variablen
+
+**Richtlinie:** Lokale statische Variablen verwenden, wenn ein Wert über Funktionsaufrufe hinweg erhalten bleiben soll, aber keine globale Sichtbarkeit benötigt wird. Globale Variablen nur, wenn zwingend erforderlich.
+
+**Gutes Beispiel**
+
+```c
+// Zähler bleibt zwischen Funktionsaufrufen erhalten, ist aber nur hier sichtbar
+void zaehler_beispiel(void) {
+    static int aufrufe = 0;
+    aufrufe++;
+    printf("Funktion wurde %d-mal aufgerufen\n", aufrufe);
+}
+```
+
+**Schlechtes Beispiel**
+
+```c
+// Globale Variable – kann überall verändert werden, erschwert Fehlersuche
+int aufrufe = 0;
+
+void zaehler_beispiel(void) {
+    aufrufe++;
+    printf("Funktion wurde %d-mal aufgerufen\n", aufrufe);
+}
+```
+
+---
+
+**Gutes Beispiel**
+
+```c
+// Statische lokale Variable – verhält sich wie eine globale ist jedoch nur in der Funktion selbst sichtbar
+int blinking(int time_period) {
+    static unsigned long previous_millis = 0;
+    // ...
+    if (millis() - previous_millis > time_period/2) {
+        // ...
+    }
+}
+```
+
+**Schlechtes Beispiel**
+
+```c
+// Globale Variable – überall sichtbar, fehleranfällig
+unsigned long previous_millis = 0;
+
+int blinking(int time_period) {
+    // ...
+    if (millis() - previous_millis > time_period/2) {
+        // ...
+    }
+}
+```
+
 ---
 
 ## 2 Advanced
@@ -180,9 +300,9 @@ int summe(int *a, int n) {
 
 ```c
 // Klar und gut zu optimieren - gut lesbar
-int summe(const int *a, size_t n) {
+int summe(const int *a, int n) {
     int s = 0;
-    for (size_t i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         s += a[i];
     }
     return s;
@@ -193,7 +313,7 @@ int summe(const int *a, size_t n) {
 
 ```c
 // Undurchsichtige Mikro-Optimierung
-int summe(const int *a, size_t n) {
+int summe(const int *a, int n) {
     int s = 0; const int *end = a + n;
     while (a != end) s += *a++;
     return s; // Gewinn minimal, Lesbarkeit leidet

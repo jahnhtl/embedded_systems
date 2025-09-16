@@ -1,14 +1,15 @@
 # Anleitung: Installation von Visual Studio Code, Git, PlatformIO, und Wokwi
 
-## Visual Studio Code installieren
+**Wichtiger Hinweis:** In der Schule können die ersten drei Tools (Visual Studio Code, Git und Github Desktop) direkt über das Software Center installiert werden und sind möglicherweise schon installiert.
 
+
+## Visual Studio Code installieren
 1. Öffne deinen Webbrowser und gehe auf [https://code.visualstudio.com/](https://code.visualstudio.com/).
 2. Klicke auf **Download for Windows** (oder wähle dein Betriebssystem).
 3. Starte die heruntergeladene Installationsdatei und folge den Anweisungen.  
 4. Nach der Installation öffne Visual Studio Code.
 
 ## Git und GitHub einrichten
-TODO: Software Center -> check für Git und Github Desktop
 1. Installiere [Git für Windows](https://git-scm.com/download/win) (oder für dein Betriebssystem).
 2. Starte die Installationsdatei und folge den Anweisungen.
 3. Öffne Visual Studio Code.
@@ -20,6 +21,19 @@ TODO: Software Center -> check für Git und Github Desktop
 
 **Hinweis:** Nach der Installation kannst du direkt aus Visual Studio Code mit Git und GitHub arbeiten.
 
+**Tipp:** Überprüfe die erfolgreiche Installation, indem du im Terminal (Eingabeaufforderung) den Befehl `git --version` eingibst. Möglicherweise ist ein Neustart deines Computers notwendig.
+
+## GitHub Desktop installieren
+
+1. Öffne deinen Webbrowser und gehe auf [https://desktop.github.com/](https://desktop.github.com/).
+2. Klicke auf **Download for Windows** (oder wähle dein Betriebssystem).
+3. Starte die heruntergeladene Installationsdatei und folge den Anweisungen.
+4. Nach der Installation öffne **GitHub Desktop**.
+5. Melde dich mit deinem GitHub-Konto an, um deine Repositorys zu verwalten.
+
+**Tipp:** Mit GitHub Desktop kannst du Änderungen an Projekten einfach lokal verwalten und mit GitHub synchronisieren.
+
+
 ## PlatformIO IDE Plugin installieren
 
 1. Öffne Visual Studio Code.
@@ -27,6 +41,7 @@ TODO: Software Center -> check für Git und Github Desktop
 3. Suche nach **PlatformIO IDE**.
 4. Klicke auf **Installieren** beim PlatformIO IDE Plugin.
 5. Nach der Installation erscheint ein neues PlatformIO-Symbol in der linken Seitenleiste.
+
 
 ## Wokwi Simulator Plugin installieren
 
