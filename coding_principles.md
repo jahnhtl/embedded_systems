@@ -4,7 +4,7 @@ Dieses Merkblatt bietet eine kompakte Grundlage für das Schreiben von solidem C
 
 ---
 
-## 1 Basics
+## 1. Grundlagen
 
 ### 1.1 Konsistenz und Formatierung
 
@@ -74,7 +74,7 @@ int diff(int zahl_1, int zahl2) {
 
 ### 1.3 Sprechende Namen
 
-**Richtlinie:** Aussagekräftige, konsistente Namen für Variablen, Funktionen und Typen vergeben.
+**Richtlinie:** Aussagekräftige, konsistente Namen für Variablen, Funktionen und Typen vergeben. Und ebenfalls für die Codedatei selbst soll einen sinnvollen Namen erhalten.
 
 **Gutes Beispiel**
 
@@ -89,6 +89,8 @@ int anzahl_sensoren = 4;
 int f(const int *a, int n);
 int x = 4; // Was ist x?
 ```
+
+**Hinweis:** Englische Variablennamen und Kommentare sind zu bevorzugen - aber auch hier unbedingt einheitlich (nur deutsch oder nur englisch)!
 
 ---
 
@@ -115,7 +117,41 @@ i = i + 1; // i um 1 erhöhen (überflüssig)
 
 ---
 
-### 1.5 Funktionen / Module
+### 1.5 Kommentare – Fileheader
+
+**Richtlinie:** Ein Fileheader steht am Anfang jeder Datei und beschreibt deren Zweck, Autor, Datum und weitere relevante Informationen.
+
+**Gutes Beispiel**
+
+```c
+/*
+ * File:           modulname.c
+ * Autor:          Max Mustermann
+ * Datum:          2024-06-01
+ * Version:        1.0
+ * Lizenz:         MIT
+ * 
+ * Beschreibung:   Implementierung der Sensorlogik - liest Sensordaten aus und berechnet den Mittelwert.
+ */
+```
+
+**Schlechtes Beispiel**
+
+```c
+// sensor.c
+#include <Arduino.h>
+
+void setup()
+{
+    Serial.begin(115200);
+}
+```
+
+**Hinweis:** Der Fileheader sollte immer aktuell gehalten werden und mindestens Zweck, Autor und Datum enthalten. Zusätzliche Angaben wie Version, Lizenz oder Änderungsverlauf sind hilfreich, aber optional.
+
+---
+
+### 1.6 Funktionen / Module
 
 **Richtlinie:** Probleme in kleine, fokussierte Funktionen/Module zerlegen. Jede Funktion erfüllt eine klar umrissene Aufgabe.
 
@@ -135,7 +171,7 @@ int process(const char *f) { /* 200+ Zeilen */ }
 
 ---
 
-### 1.6 Vermeidung von magischen Zahlen
+### 1.7 Vermeidung von magischen Zahlen
 
 **Richtlinie:** Hart kodierte Zahlen durch Konstanten, Enums oder Makros mit Bedeutung ersetzen.
 
@@ -162,7 +198,7 @@ char puffer[256]; // Warum 256? Was wenn man es hier anpasst? Wo noch?
 
 ---
 
-### 1.7 Fehlerbehandlung
+### 1.8 Fehlerbehandlung
 
 **Richtlinie:** Rückgabewerte prüfen, Fehler kontrolliert behandeln und nützliche Diagnosen ausgeben.
 
@@ -188,7 +224,7 @@ FILE *fp = fopen("daten.txt", "r");
 
 ---
 
-### 1.8 Compiler-Warnungen
+### 1.9 Compiler-Warnungen
 
 **Richtlinie:** Mit "strengen" Warnungen ("-Wall") kompilieren und diese sofort beheben.
 
@@ -215,7 +251,7 @@ int summe(int *a, int n) {
 }
 ```
 
-### 1.9 Globale Variablen vs. Parameterübergabe (Pointer)
+### 1.10 Globale Variablen vs. Parameterübergabe (Pointer)
 
 **Richtlinie:** Globale Variablen vermeiden, da sie die Wartbarkeit und Testbarkeit erschweren. Stattdessen lokale Variablen oder Übergabe per Parameter (Pointer) bevorzugen.
 
@@ -232,7 +268,7 @@ int werte[10]; // global definiert
 int berechne_summe(void) { /* nutzt globale Variable */ }
 ```
 
-### 1.10 Globale vs. lokale statische Variablen
+### 1.11 Globale vs. lokale statische Variablen
 
 **Richtlinie:** Lokale statische Variablen verwenden, wenn ein Wert über Funktionsaufrufe hinweg erhalten bleiben soll, aber keine globale Sichtbarkeit benötigt wird. Globale Variablen nur, wenn zwingend erforderlich.
 
@@ -290,7 +326,7 @@ int blinking(int time_period) {
 
 ---
 
-## 2 Advanced
+## 2. Fortgeschrittene Themen
 
 ### 2.1 Effizienz vs. Lesbarkeit
 
