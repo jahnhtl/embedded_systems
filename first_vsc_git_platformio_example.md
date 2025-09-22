@@ -61,6 +61,7 @@ Mit der Wokwi-Erweiterung für Visual Studio Code kannst du Arduino-Projekte dir
 5. Der Simulator startet und zeigt dein Projekt direkt im Editor an.
 
 So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
+
 ---
 
 ## Schritt 2: Eigenes Repository "Blinking LED" auf GitHub erstellen
@@ -82,18 +83,21 @@ So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 6. Wähle **Add .gitignore** und suche nach dem passenden Template (z.B. Arduino, C++, PlatformIO). Die .gitignore-Datei sorgt dafür, dass bestimmte Dateien (z.B. Build-Ordner, temporäre Dateien) nicht ins Repository gelangen.
 
 7. Mit **Add a license** kannst du eine Lizenz für dein Projekt auswählen (z.B. MIT, GPL, Apache). Die Lizenz regelt, wie andere deinen Code nutzen dürfen. [Choose a license](https://choosealicense.com) hilft dir die richtige Lizenz zu wählen. 
-8. Geschafft - klicke auf "Create repository".
+8. Geschafft - klicke auf "**Create repository**".
 
 
-### In VS Code clonen via terminal - Option 1
+### Repository auf den eigenen PC clonen
+
+#### In VS Code clonen via terminal - Option 1
 
 1. Kopiere die Repository-URL von GitHub.
-2. In VS Code:
+2. Gehe wie in Schritt 1 vor -> Öffne Visual Studio Code -> Öffne das Terminal (`Strg + ö`) -> ins richtige Verzeichnis wechseln.
+3. In VS Code:
     ```bash
     git clone https://github.com/dein-benutzername/Blinking_LED.git
     ```
 
-### In VS Code clonen via Befehlspalette - Option 2
+#### In VS Code clonen via Befehlspalette - Option 2
 
 1. Klicke oben links auf **"Ansicht"** > **"Befehlspalette..."** (oder drücke `F1` bzw. `Ctrl+Shift+P`).
 2. Gib **"Git: Clone"** ein und wähle den Befehl **"Git: Clone"** aus.
@@ -106,15 +110,17 @@ Dadurch wird das Git-Repository direkt über die VS Code-Oberfläche geklont, oh
 
 ### Neues PlatformIO-Projekt erstellen
 
-1. Öffne VS Code und installiere die PlatformIO-Erweiterung.
-2. Klicke auf "PlatformIO" > "New Project".
+1. Öffne VS Code und installiere die PlatformIO-Erweiterung (falls nicht vorhanden).
+2. Klicke in der Seitenleiste auf "PlatformIO" > "New Project".
 3. Wähle das geklonte Repository als Speicherort.
 
 ### Code schreiben und testen
 
-1. Öffne im geklonten Repository den Ordner `src` und erstelle eine Datei namens `main.cpp`.
-2. Schreibe den notwendigen Code um die LED auf Pin13 blinken zu lassen.
+1. Öffne im geklonten Repository den Ordner `src` und erstelle eine Datei namens `main.cpp` (normalerweise bereits vorhanden).
+2. Schreibe den notwendigen Code um die LED auf dem Digital Pin 13 blinken zu lassen.
 3. Speichere die Datei.
+
+### Projekt ausführen
 
 #### Option 1: Projekt mit PlatformIO bauen und hochladen
 
@@ -133,7 +139,6 @@ Damit kannst du deinen Code direkt auf das echte Board spielen und testen.
 3. Beobachte im Simulator, wie die LED blinkt.
 
 So kannst du deinen Code direkt testen, ohne ein echtes Arduino-Board zu benötigen.
-
 
 
 ### Änderungen committen und pushen
@@ -158,7 +163,7 @@ verbinden.
 
 #### Option 2: Über die grafische Oberfläche von VS Code
 
-1. Öffne die Seitenleiste **Quellcodeverwaltung** (Symbol mit drei Linien und Punkten oder `Ctrl+Shift+G`).
+1. Öffne die Seitenleiste **Quellcodeverwaltung** (Symbol mit drei Linien und Punkten oder `Ctrl+Shift+G` und dann nochmals `G`).
 2. Du siehst alle geänderten Dateien unter "Änderungen".
 3. Gib eine Commit-Nachricht ins Feld oben ein (z.B. "Erstes Blinking LED Projekt").
 4. Klicke auf das Häkchen-Symbol, um zu committen.
