@@ -70,7 +70,7 @@ So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 
 1. Gehe auf [github.com](https://github.com), logge dich mit deinem Benutzernamen ein
 2. Klicke in der linken Seitenleiste auf "New" oberhalb deiner Repositories. Oder klicke auf den Tab Repositories und rechts auf "New".
-3. Gib als Namen `Blinking_LED` ein.
+3. Gib als Namen `Blinking_LED_Repo` ein.
 4. Wähle aus, ob dein Repository **public** (öffentlich) oder **private** (privat) sein soll.
 
     - **Public:** Jeder kann dein Repository sehen und darauf zugreifen. Ideal, wenn du deinen Code teilen oder anderen zeigen möchtest.
@@ -94,8 +94,9 @@ So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 2. Gehe wie in Schritt 1 vor -> Öffne Visual Studio Code -> Öffne das Terminal (`Strg + ö`) -> ins richtige Verzeichnis wechseln.
 3. In VS Code:
     ```bash
-    git clone https://github.com/dein-benutzername/Blinking_LED.git
+    git clone https://github.com/dein-benutzername/Blinking_LED_Repo.git
     ```
+4. Öffne den Ordner in VS Code.
 
 #### In VS Code clonen via Befehlspalette - Option 2
 
@@ -110,9 +111,12 @@ Dadurch wird das Git-Repository direkt über die VS Code-Oberfläche geklont, oh
 
 ### Neues PlatformIO-Projekt erstellen
 
-1. Öffne VS Code und installiere die PlatformIO-Erweiterung (falls nicht vorhanden).
-2. Klicke in der Seitenleiste auf "PlatformIO" > "New Project".
-3. Wähle das geklonte Repository als Speicherort.
+1. Öffne VS Code und installiere die PlatformIO-Erweiterung.
+2. Klicke auf "PlatformIO" > "New Project".
+3. Wähle als Projektname "Blinking_LED".
+4. Wähle als Board "Arduino Uno".
+5. Deaktiviere "Use default location" und **wähle das geklonte Repository als Speicherort**.
+6. Klicke auf "Finish" - das Projekt wird erstellt und kann ein paar Sekunden dauern. 
 
 ### Code schreiben und testen
 
@@ -133,6 +137,8 @@ Dadurch wird das Git-Repository direkt über die VS Code-Oberfläche geklont, oh
 
 Damit kannst du deinen Code direkt auf das echte Board spielen und testen.
 
+**Hinweis:** Falls dir die Statusleiste nicht angezeigt wird kann es daran liegen, dass PlatformIO den Unterordner Blinking_LED nicht als solches erkannt hat. Gehe in diesem Fall auf "Datei" -> "Open Folder" und wählen den Ordner Blinking_LED anstelle von Blinking_LED_Repo aus. 
+
 #### Option 2: Testen mit Wokwi
 
 1. Drücke `F1` oder `Ctrl+Shift+P` um die Befehlspalette zu öffnen.
@@ -144,7 +150,19 @@ So kannst du deinen Code direkt testen, ohne ein echtes Arduino-Board zu benöti
 
 ### Änderungen committen und pushen
 
-#### Option 1: Via terminal
+#### Option 1: Über die grafische Oberfläche von VS Code
+
+1. Öffne die Seitenleiste **Quellcodeverwaltung** (Symbol mit drei Linien und Punkten oder `Ctrl+Shift+G` und dann nochmals `G`).
+2. Du siehst alle geänderten Dateien unter "Änderungen".
+3. Gib eine Commit-Nachricht ins Feld oben ein (z.B. "Erstes Blinking LED Projekt").
+4. Klicke auf das Häkchen-Symbol, um zu committen.
+5. Klicke auf die drei Punkte (`...`) oben und wähle **"Push"** aus, um die Änderungen zu GitHub hochzuladen.
+
+Damit kannst du Änderungen einfach und übersichtlich ohne Terminal verwalten.
+
+**Hinweis:** Falls bei Punkt 2 angezeigt wird, dass kein Repository erkannt wurde, gehe in diesem Fall auf "Datei" -> "Open Folder" und wählen den Ordner "Blinking_LED_Repo" anstelle von "Blinking_LED" aus.
+
+#### Option 2: Via terminal
 
 1. Achte darauf, dass du im Terminal im richtigen Verzeichnis bist:
 2. Führe folgende Befehle aus.
@@ -161,16 +179,6 @@ So kannst du deinen Code direkt testen, ohne ein echtes Arduino-Board zu benöti
 Falls du noch kein Remote-Repository verbunden hast, musst du es zuerst mit  
 `git remote add origin <URL>`  
 verbinden.
-
-#### Option 2: Über die grafische Oberfläche von VS Code
-
-1. Öffne die Seitenleiste **Quellcodeverwaltung** (Symbol mit drei Linien und Punkten oder `Ctrl+Shift+G` und dann nochmals `G`).
-2. Du siehst alle geänderten Dateien unter "Änderungen".
-3. Gib eine Commit-Nachricht ins Feld oben ein (z.B. "Erstes Blinking LED Projekt").
-4. Klicke auf das Häkchen-Symbol, um zu committen.
-5. Klicke auf die drei Punkte (`...`) oben und wähle **"Push"** aus, um die Änderungen zu GitHub hochzuladen.
-
-Damit kannst du Änderungen einfach und übersichtlich ohne Terminal verwalten.
 
 ---
 
