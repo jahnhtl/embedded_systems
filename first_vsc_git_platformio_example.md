@@ -44,7 +44,7 @@ Wir nutzen das Beispielprojekt [Arduino-simon-game](https://github.com/wokwi/ard
     ```bash
     git clone https://github.com/wokwi/arduino-simon-game.git
     ```
-6. Öffne den Ordner in VS Code. Klicke dazu auf **Menü -> File -> OpenFolder**
+6. Öffne den Ordner in VS Code. Klicke dazu auf **Menü -> File -> OpenFolder** -> dann wählen Sie den Ordner `arduino-simon-game` aus.
 7. Um das **Projekt zu kompilieren** klicke in der Statuszeile auf das Häkchen-Symbol („Build“) oder wähle im PlatformIO-Menü Build aus. Alternativ kannst du Ctrl + Alt + B drücken.
 
 **Hinweis:** Wenn mehrere Ordner geöffnet werden soll wählen Sie **Add Folder to Workspace**.
@@ -68,8 +68,8 @@ So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 
 ### Repo auf GitHub erstellen
 
-1. Gehe auf [github.com](github.com), logge dich mit deinem Benutzernamen ein
-2. Klicke in der linken Seitenleiste auf "New" oberhalb deiner Repositories.
+1. Gehe auf [github.com](https://github.com), logge dich mit deinem Benutzernamen ein
+2. Klicke in der linken Seitenleiste auf "New" oberhalb deiner Repositories. Oder klicke auf den Tab Repositories und rechts auf "New".
 3. Gib als Namen `Blinking_LED` ein.
 4. Wähle aus, ob dein Repository **public** (öffentlich) oder **private** (privat) sein soll.
 
