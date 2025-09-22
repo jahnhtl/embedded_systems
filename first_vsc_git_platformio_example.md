@@ -124,11 +124,12 @@ Dadurch wird das Git-Repository direkt über die VS Code-Oberfläche geklont, oh
 
 #### Option 1: Projekt mit PlatformIO bauen und hochladen
 
-1. Öffne die PlatformIO-Seitenleiste in VS Code.
+1. Öffne die PlatformIO-Seitenleiste bzw. verwende die Icons in der Statusleiste in VS Code.
 2. Klicke auf **"Build"** (Häkchen-Symbol), um das Projekt zu kompilieren.
-3. Schließe dein Arduino-Board per USB an.
+3. Schließe dein Arduino-Board per USB an - der COM-Port wird (meist) automatisch erkannt.
 4. Klicke auf **"Upload"** (Pfeil-Symbol), um den Code auf das Board zu übertragen.
 5. Überprüfe die Ausgabe im Terminal, ob der Upload erfolgreich war.
+6. Optional für serielle Ausgaben: Klicke auf **Monitor** ( Steckersymbol) um die Ausgaben deines Boards zu sehen.
 
 Damit kannst du deinen Code direkt auf das echte Board spielen und testen.
 
