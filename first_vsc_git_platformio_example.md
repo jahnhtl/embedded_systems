@@ -55,7 +55,7 @@ Mit der Wokwi-Erweiterung für Visual Studio Code kannst du Arduino-Projekte dir
 
 1. Installiere die [Wokwi VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Wokwi.wokwi-vscode).
 2. Öffne das geklonte Projekt in VS Code.
-3. Kompiliere das Projekt
+3. Kompiliere das Projekt. Klicke auf **"Build"** (Häkchen-Symbol) in der Statusleiste von PlatformIO, um das Projekt zu kompilieren.
 4. Drücke **F1** oder **Ctrl+Shift+P**, um die Befehlspalette zu öffnen.
 5. Tippe **Wokwi** und wähle **Wokwi: Start Simulator** aus
 5. Der Simulator startet und zeigt dein Projekt direkt im Editor an.
@@ -137,15 +137,37 @@ Dadurch wird das Git-Repository direkt über die VS Code-Oberfläche geklont, oh
 
 Damit kannst du deinen Code direkt auf das echte Board spielen und testen.
 
-**Hinweis:** Falls dir die Statusleiste nicht angezeigt wird kann es daran liegen, dass PlatformIO den Unterordner Blinking_LED nicht als solches erkannt hat. Gehe in diesem Fall auf "Datei" -> "Open Folder" und wählen den Ordner Blinking_LED anstelle von Blinking_LED_Repo aus. 
+**Hinweis:** Falls dir die Statusleiste nicht angezeigt wird versuche VSC zu schließen und wieder zu öffnen. Es kann aber auch daran liegen, dass PlatformIO den Unterordner Blinking_LED nicht als solches erkannt hat. Gehe in diesem Fall auf "Datei" -> "Open Folder" und wählen den Ordner Blinking_LED anstelle von Blinking_LED_Repo aus. 
 
 #### Option 2: Testen mit Wokwi
 
+##### Wokwi-Konfigurationsdateien anlegen
+
+1. Erstelle im Hauptverzeichnis deines Projekts eine Datei namens `wokwi.toml`.
+2. Füge folgenden Inhalt in die Datei ein:
+    ```toml
+    [wokwi]
+    version=1
+    firmware='.pio/build/uno/firmware.hex'
+    elf='.pio/build/uno/firmware.elf'
+    ```
+   Diese Datei teilt Wokwi mit, dass das Projekt mit wokwi gestartet werdenn kann und wo sich hex und elf File befindet.
+
+3. Öffne [wokwi.com](https://wokwi.com) und zeichne online deinen Schaltplan (z.B. Arduino Uno, LED, Poti).
+4. Wechsle im Wokwi-Editor zum Tab **"diagram.json"**.
+5. Kopiere den gesamten Inhalt aus diesem Tab.
+6. Erstelle im Hauptverzeichnis deines Projekts eine Datei namens `diagram.json` und füge dort den kopierten Inhalt ein. Klicke dazu mit der rechten Maustaste auf die Datei, wähle **"Open With"** und dann **"Text Editor"**, um den Inhalt einzufügen und zu speichern.
+
+Damit ist dein Projekt für die Simulation mit Wokwi in VS Code vorbereitet.
+
+##### Wokwi-Simulation starten
+
 1. Drücke `F1` oder `Ctrl+Shift+P` um die Befehlspalette zu öffnen.
 2. Gib **"Wokwi: Start Simulation"** ein und wähle den entsprechenden Befehl aus.
-3. Beobachte im Simulator, wie die LED blinkt.
-
-So kannst du deinen Code direkt testen, ohne ein echtes Arduino-Board zu benötigen.
+3. Alternativ kannst du einfach die Datei **diagram.json** im Explorer in VSC anklicken.
+4. Klicke dann auf den grünen Start-Button.
+5. Falls die Fehlermeldung `Wokwi: firmware binary .pio/build/uno/firmware.hex not found in workspace` auftritt, musst du das Projekt zuerst bauen (Build ausführen), damit die benötigte Datei erzeugt wird. Klicke auf **"Build"** (Häkchen-Symbol) in der Statusleiste von PlatformIO, um das Projekt zu kompilieren.
+6. Beobachte im Simulator, wie die LED blinkt.
 
 
 ### Änderungen committen und pushen
