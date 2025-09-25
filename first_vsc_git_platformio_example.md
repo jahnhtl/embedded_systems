@@ -88,6 +88,14 @@ So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 
 ### Repository auf den eigenen PC clonen
 
+Um den Link zu deinem Repository zu finden, gehe wie folgt vor:
+
+1. Öffne dein Repository auf [GitHub](https://github.com) im Browser.
+2. Oben rechts im Repository findest du einen grünen **"Code"**-Button. Klicke darauf.
+3. Es öffnet sich ein Dropdown-Menü. Dort siehst du unter "Clone" die Repository-URL. Standardmäßig wird die HTTPS-URL angezeigt (z.B. `https://github.com/dein-benutzername/Blinking_LED_Repo.git`).
+4. Klicke rechts neben der URL auf das Kopier-Symbol, um die Adresse in die Zwischenablage zu kopieren.
+
+
 #### In VS Code clonen via terminal - Option 1
 
 1. Kopiere die Repository-URL von GitHub.
@@ -102,7 +110,7 @@ So kannst du deinen Code testen, ohne ein echtes Arduino-Board zu benötigen.
 
 1. Klicke oben links auf **"Ansicht"** > **"Befehlspalette..."** (oder drücke `F1` bzw. `Ctrl+Shift+P`).
 2. Gib **"Git: Clone"** ein und wähle den Befehl **"Git: Clone"** aus.
-3. Füge die Repository-URL ein (z.B. `https://github.com/dein-benutzername/Blinking_LED.git`) und bestätige mit Enter.
+3. Füge die Repository-URL ein (z.B. `https://github.com/dein-benutzername/Blinking_LED_Repo.git`) und bestätige mit Enter.
 4. Wähle einen Ordner aus, in den das Projekt gespeichert werden soll.
 5. VS Code fragt, ob du das geklonte Projekt direkt öffnen möchtest – bestätige mit **"Öffnen"**.
 
@@ -224,7 +232,7 @@ verbinden.
 3. Verbinde dein lokales Repository mit GitHub:
     ```bash
     git remote add origin https://github.com/dein-benutzername/Blinking_LED_millis.git
-    git push -u origin master
+    git push -u origin main
     ```
 4. Dein PlatformIO-Projekt ist jetzt auf GitHub verfügbar.
 
