@@ -117,8 +117,8 @@ Diese Aufgabensammlung hilft dir dabei, die Grundlagen der Programmlogik mit Flu
 ### Flussdiagramm-Elemente:
 - **Oval:** Start/Ende
 - **Rechteck:** Prozess/Berechnung
+- **Rechteck oder Parallelogramm:** Eingabe/Ausgabe
 - **Raute:** Entscheidung (Ja/Nein)
-- **Parallelogramm:** Eingabe/Ausgabe
 - **Pfeile:** Programmfluss
 
 ### Häufige Muster:

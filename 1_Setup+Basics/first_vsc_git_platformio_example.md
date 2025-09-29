@@ -220,6 +220,8 @@ verbinden.
 4. Nach dem Erstellen öffnet sich das Projekt automatisch in VS Code.
 5. Öffne den Ordner `src` und erstelle oder bearbeite die Datei `main.cpp`. Schreibe dort deinen Code für das LED-Blinken mit `millis()`.
 
+**Achtung:** Schreiben Sie den Code nicht in die Datei `platformio.ini`. Diese Datei ist die zentrale Konfigurationsdatei eines PlatformIO-Projekts. Hier werden Einstellungen wie das verwendete Board, die Programmiersprache, Bibliotheken und Build-Optionen festgelegt. Änderungen an dieser Datei beeinflussen, wie das Projekt gebaut und ausgeführt wird.
+
 ### Neues Git-Repository erstellen
 1. Öffne das Terminal in VS Code und initialisiere ein neues Git-Repository:
     ```bash
@@ -231,7 +233,14 @@ verbinden.
 2. Erstelle ein neues Repository auf GitHub mit dem Namen `Blinking_LED_millis`.
 3. Verbinde dein lokales Repository mit GitHub:
     ```bash
+    # Verbindet das lokale Repo mit Github
     git remote add origin https://github.com/dein-benutzername/Blinking_LED_millis.git
+    
+    # Benennt den aktuellen Git-Branch auf "main" um. Damit ist der Standard-Branch-Name nun "main".
+    git branch -M main
+
+    # Lädt die Änderungen zum ersten Mal zu GitHub hoch und verknüpft den lokalen "main"-Branch mit dem "main"-Branch auf GitHub.
+    # Das "-u" setzt das Remote-Repository als Standard für zukünftige Push/Pull-Operationen, sodass später nur noch "git push" eingegeben werden muss.
     git push -u origin main
     ```
 4. Dein PlatformIO-Projekt ist jetzt auf GitHub verfügbar.

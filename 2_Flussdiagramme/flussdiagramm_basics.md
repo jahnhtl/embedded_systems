@@ -38,7 +38,9 @@ flowchart TD
   - `Summe = a + b`
   - `LED einschalten`
 
-### 📋 Ein-/Ausgabe (Rechteck)
+**Hinweis:** Eine Aktion oder ein Prozess hat immer ein Verb als Beschreibung mit dabei. z.B. Timer *starten*
+
+### 📋 Ein-/Ausgabe (Rechteck oder Parallelogramm)
 ```mermaid
 flowchart TD
     A[Eingabe: Zahl a]
@@ -248,7 +250,7 @@ flowchart TD
     B --> C{Zahl % 2 = 0?}
     C -->|Ja| D[Ausgabe: 'Gerade']
     C -->|Nein| E[Ausgabe: 'Ungerade']
-    D --> F(Ende)
+    D --> F((Ende))
     E --> F
 ```
 </details>
@@ -273,7 +275,7 @@ flowchart TD
     G --> J
     H --> J
     I --> J
-    J --> K(Ende)
+    J --> K((Ende))
 ```
 </details>
 
@@ -293,7 +295,7 @@ flowchart TD
     F --> G[Zähler = Zähler + 1]
     G --> E
     E -->|Nein| H[Ausgabe: Fakultät]
-    H --> I(Ende)
+    H --> I((Ende))
 ```
 </details>
 
