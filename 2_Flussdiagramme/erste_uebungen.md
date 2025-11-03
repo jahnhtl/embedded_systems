@@ -25,7 +25,7 @@ Diese Aufgabensammlung hilft dir dabei, die Grundlagen der Programmlogik mit Flu
 
 ### 1.2 Countdown
 
-**Aufgabe:** Ein Programm liest eine Zahl ein (z.B. 5). Von dieser Zahl wird rückwärts gezählt (5, 4, 3, 2, 1). Danach wird „Start!" ausgegeben.
+**Aufgabe:** Ein Programm liest eine Zahl ein (z.B. 5). Von dieser Zahl wird rückwärts gezählt (5, 4, 3, 2, 1). Danach wird "Ready for Takeoff!" ausgegeben.
 
 ---
 
@@ -35,7 +35,7 @@ Diese Aufgabensammlung hilft dir dabei, die Grundlagen der Programmlogik mit Flu
 - Bei jeder Einfahrt wird ein Platz abgezogen
 - Bei jeder Ausfahrt wird ein Platz addiert
 - Wenn das Parkhaus voll ist, erscheint „Besetzt"
-- Wenn das Parkhaus leer ist, erscheint „Frei"
+- Wenn noch Plätze vorhanden sind, erscheint „Frei"
 
 **Wichtige Elemente:**
 - Endlosschleife (Parkhaus läuft kontinuierlich)
