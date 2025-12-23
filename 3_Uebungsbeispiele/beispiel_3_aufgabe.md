@@ -1,4 +1,4 @@
-# Übungsbeispiel 4: LED-Helligkeitssteuerung mit Invertierung
+# Übungsbeispiel 3: LED-Helligkeitssteuerung mit Invertierung
 
 ## Aufgabenstellung
 

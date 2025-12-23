@@ -1,4 +1,4 @@
-# Übungsbeispiel 2: LED-Helligkeitssteuerung mit Potentiometer
+# Übungsbeispiel 0: LED-Helligkeitssteuerung mit Potentiometer
 
 ## Aufgabenstellung
 

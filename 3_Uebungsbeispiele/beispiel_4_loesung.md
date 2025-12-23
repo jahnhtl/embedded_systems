@@ -1,4 +1,4 @@
-# Übungsbeispiel 5: Komplexe LED-Steuerung mit mehreren Eingabequellen - Lösung
+# Übungsbeispiel 4: Komplexe LED-Steuerung mit mehreren Eingabequellen - Lösung
 
 ## Flussdiagramm
 

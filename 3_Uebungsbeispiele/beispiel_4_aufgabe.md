@@ -1,4 +1,4 @@
-# Übungsbeispiel 5: Komplexe LED-Steuerung mit mehreren Eingabequellen
+# Übungsbeispiel 54: Komplexe LED-Steuerung mit mehreren Eingabequellen
 
 ## Aufgabenstellung
 

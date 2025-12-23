@@ -1,4 +1,4 @@
-# Übungsbeispiel 4: LED-Helligkeitssteuerung mit Invertierung - Lösung
+# Übungsbeispiel 3: LED-Helligkeitssteuerung mit Invertierung - Lösung
 
 ## Flussdiagramm
 
