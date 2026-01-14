@@ -12,8 +12,7 @@
 
 ```mermaid
 graph TD
-    A["Start"] --> B["Initialisierung:<br/>Pin 9 als OUTPUT<br/>Serial.begin(115200)"]
-    B --> C{"Endlosschleife"}
+    A["Start"] --> C["Initialisierung:<br/>Pin 9 als OUTPUT<br/>Serial.begin(115200)"]
     C --> D["Potentiometer auslesen<br/>potiWert = analogRead(A0)"]
     D --> E["Wert umrechnen<br/>helligkeit = potiWert / 4"]
     E --> F["LED-Helligkeit setzen<br/>analogWrite(9, helligkeit)"]

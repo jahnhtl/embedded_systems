@@ -13,7 +13,7 @@
 ```mermaid
 graph TD
     A["Start"] --> B["Initialisierung:<br/>Pins konfigurieren<br/>Serial.begin(115200)<br/>Variablen initialisieren"]
-    B --> C{"Endlosschleife"}
+    B --> C["Schleifenstart"]
     C --> D{"Taster 1<br/>gedrückt?"}
     D -->|Ja| E["Modus wechseln<br/>modus = (modus + 1) % 3"]
     E --> F["Modus anzeigen<br/>delay(300)"]

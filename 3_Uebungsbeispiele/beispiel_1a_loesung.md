@@ -11,8 +11,8 @@
 ```mermaid
 graph TD
     A["Start"] --> B["Initialisierung:<br/>Pin 13 als OUTPUT<br/>Serial.begin(115200)"]
-    B --> C["Variable ledStatus = LOW"]
-    C --> D{"Endlosschleife"}
+    B --> D["Variable ledStatus = LOW"]
+
     D --> E{"Serielle Daten<br/>verfügbar?<br/>Serial.available()"}
     E -->|Ja| F["Zeichen lesen<br/>char c = Serial.read()"]
     F --> G{"c == '1'?"}
@@ -22,9 +22,9 @@ graph TD
     H --> K["LED setzen<br/>digitalWrite(13, ledStatus)"]
     J --> K
     K --> L["Status ausgeben<br/>Serial.println"]
-    L --> C
-    I -->|Nein| C
-    E -->|Nein| C
+    L --> D
+    I -->|Nein| D
+    E -->|Nein| D
 ```
 
 ---

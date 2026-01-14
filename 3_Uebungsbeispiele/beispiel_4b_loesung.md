@@ -12,8 +12,7 @@
 ```mermaid
 graph TD
   A["Start"] --> B["Initialisierung:<br/>Pin 11, 12, 13 als OUTPUT<br/>Pin 2, 3 als INPUT_PULLUP<br/>Serial.begin(115200)"]
-  B --> C["Variablen:<br/>richtung = true (vorwärts)<br/>schnell = true<br/>aktuelleDelay = 200<br/>index = 0"]
-  C --> D{"Endlosschleife"}
+  B --> D["Variablen:<br/>richtung = true (vorwärts)<br/>schnell = true<br/>aktuelleDelay = 200<br/>index = 0"]
   D --> E{"Taster 1<br/>gedrückt?<br/>Pin 2 == LOW"}
   E -->|Ja| F["Richtung umkehren<br/>richtung = !richtung"]
   F --> G["Status ausgeben"]

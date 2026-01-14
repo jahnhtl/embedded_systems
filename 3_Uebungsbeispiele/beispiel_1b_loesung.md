@@ -12,14 +12,13 @@
 ```mermaid
 graph TD
     A["Start"] --> B["Initialisierung:<br/>Pin 13 als OUTPUT<br/>Pin 2 als INPUT_PULLUP<br/>Serial.begin(115200)"]
-    B --> C["Variable ledStatus = LOW"]
-    C --> D{"Endlosschleife"}
+    B --> D["Variable ledStatus = LOW"]
     D --> E{"Taster<br/>gedrückt?<br/>digitalRead(2)"}
     E -->|LOW| F["LED-Status umschalten<br/>ledStatus = !ledStatus"]
     F --> G["LED setzen<br/>digitalWrite(13, ledStatus)"]
     G --> H["Status ausgeben<br/>Serial.println"]
-    H --> I["Entprellung<br/>delay(300)"]
-    I --> C
+    H --> I["Verzögerung<br/>delay(300)"]
+    I --> D
     E -->|HIGH| J{"Serielle Daten<br/>verfügbar?<br/>Serial.available()"}
     J -->|Ja| K["Zeichen lesen<br/>char c = Serial.read()"]
     K --> L{"c == '1'?"}
@@ -29,9 +28,9 @@ graph TD
     M --> P["LED setzen<br/>digitalWrite(13, ledStatus)"]
     O --> P
     P --> Q["Status ausgeben<br/>Serial.println"]
-    Q --> C
-    N -->|Nein| C
-    J -->|Nein| C
+    Q --> D
+    N -->|Nein| D
+    J -->|Nein| D
 ```
 
 ---
@@ -79,7 +78,7 @@ void loop() {
       Serial.println("LED ausgeschaltet (Taster)");
     }
     
-    // Entprellung: kurze Verzögerung
+    // Kurze Verzögerung um zu schnelles Umschalten zu verhindern
     delay(300);
   }
   
