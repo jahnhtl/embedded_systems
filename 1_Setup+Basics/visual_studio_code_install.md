@@ -22,11 +22,18 @@
 
 1. Installiere [Git für Windows](https://git-scm.com/download/win) (oder für dein Betriebssystem).
 2. Starte die Installationsdatei und folge den Anweisungen.
+3. im 5. Schritt -> wähle Visual Studio Code als "Default editor"
+4. Im 6. Schritt wähle "Overwrite the default branch name for new repositories" and set the branch name to main
+
+<img src="./pics/Git-Install-default-branch-name.png" width="400"/>
+
+Ev. neustarten von VSC?
+
+Oder: 
 3. Öffne Visual Studio Code.
 4. Klicke auf das **Erweiterungen-Symbol** (Quadrat mit vier kleinen Quadraten).
 5. Suche nach **GitHub Pull Requests and Issues**.
 6. Klicke auf **Installieren** beim GitHub Plugin.
-7. Optional: Installiere weitere Git-Plugins wie **GitLens** für erweiterte Funktionen.
 8. Melde dich im GitHub Plugin mit deinem GitHub-Konto an, um Repositorys zu verwalten und Issues zu bearbeiten.
 
 **Hinweis:** Nach der Installation kannst du direkt aus Visual Studio Code mit Git und GitHub arbeiten.

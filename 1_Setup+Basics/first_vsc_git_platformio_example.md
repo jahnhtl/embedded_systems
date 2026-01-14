@@ -18,7 +18,7 @@ Git ist ein Programm, mit dem du Änderungen an Dateien speichern und verwalten 
 ---
 
 
-## Schritt 1: Ein Repository clonen und compilieren (builden)
+## Schritt 1: Ein Repository clonen und kompilieren (builden)
 
 Wir nutzen das Beispielprojekt [Arduino-simon-game](https://github.com/wokwi/arduino-simon-game/tree/main).
 
@@ -94,7 +94,6 @@ Um den Link zu deinem Repository zu finden, gehe wie folgt vor:
 2. Oben rechts im Repository findest du einen grünen **"Code"**-Button. Klicke darauf.
 3. Es öffnet sich ein Dropdown-Menü. Dort siehst du unter "Clone" die Repository-URL. Standardmäßig wird die HTTPS-URL angezeigt (z.B. `https://github.com/dein-benutzername/Blinking_LED_Repo.git`).
 4. Klicke rechts neben der URL auf das Kopier-Symbol, um die Adresse in die Zwischenablage zu kopieren.
-
 
 #### In VS Code clonen via terminal - Option 1
 
@@ -230,12 +229,21 @@ verbinden.
     git add .
     git commit -m "Erstes Blinking_LED_millis Projekt mit PlatformIO"
     ```
-2. Erstelle ein neues Repository auf GitHub mit dem Namen `Blinking_LED_millis`.
+2. Erstelle ein neues Repository auf GitHub mit dem Namen `Blinking_LED_millis`. Achtung damit ein lokales Repository mit Github verbinden kannst, muss das Repository auf Github nru eine leere "Hülle" sein - also keine Dateinen, keine README, kein .gitignore, keine Lizenz.
+
 3. Verbinde dein lokales Repository mit GitHub:
     ```bash
     # Verbindet das lokale Repo mit Github
     git remote add origin https://github.com/dein-benutzername/Blinking_LED_millis.git
+    ```
+
+    **Tipp:** Den Link für das Repository findest du durch Klicken auf den grünen Code-Button und dann rechts auf das Icon neben dem angezeigten Link:
     
+    ![Github Repository URL kopieren](pics/Github-Repository-URL-kopieren.png)
+    
+    <img src="./pics/Github-Repository-URL-kopieren.png" width="400"/>
+
+    ```bash
     # Benennt den aktuellen Git-Branch auf "main" um. Damit ist der Standard-Branch-Name nun "main".
     git branch -M main
 
