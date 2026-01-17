@@ -48,12 +48,15 @@ void loop() {
   // Serielle Eingabe prüfen
   if (Serial.available() > 0) {
     char eingabe = Serial.read();
-
+    
+    // LED einschalten bei '1'
     if (eingabe == '1') {
       ledStatus = HIGH;
       digitalWrite(LED_PIN, ledStatus);
       Serial.println("LED eingeschaltet (Seriell)");
-    } else if (eingabe == '0') {
+    }
+    // LED ausschalten bei '0'
+    else if (eingabe == '0') {
       ledStatus = LOW;
       digitalWrite(LED_PIN, ledStatus);
       Serial.println("LED ausgeschaltet (Seriell)");
