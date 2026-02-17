@@ -1,8 +1,10 @@
 # Erstes Programm – „Hello World“
 
-Zum Programmieren von Microchip (ehemals AVR) Mikrocontrollern genügt bei einem Arduino  ein Texteditor und eine Toolchain (siehe Anhang). Komfortabler ist Atmel Studio: eine leistungsfähige IDE, in der man C oder Assembler schreiben und Programme simulieren kann (Register‑ und Speichereinblicke inklusive).
+Zum Programmieren von AVR Mikrocontrollern genügt bei einem Arduino ein Texteditor und eine Toolchain (die das C-Programm übersetzt in ein HEX-File konvertiert und dann auf den Microcontroller ladet - siehe Anhang). Komfortabler ist Visual Studio Code mit dem Plugin "PlatformIO": eine leistungsfähige IDE, in der man C oder Assembler schreiben und Programme simulieren und debuggen (Breakpoints, Variablenüberwachung, Live-Debugging via GDB).
 
 Auch die Arduino‑IDE kann für „normales“ C genutzt werden: Der folgende Code lässt sich direkt kompilieren und auf den Mikrocontroller laden – ganz ohne `setup()`/`loop()` und Arduino‑Bibliotheken.
+
+Noch ein Hinweis - die eigentliche main Funktion ist normalerweise bei Arduino-Programmen "versteckt" und befindet sich bei PlatformIO hier: `C:\Users\<username>\.platformio\packages\framework-arduino-avr\cores\arduino\main.cpp` oder bei Nutzung der Arduino IDE hier: `C:\Users\<username>\AppData\Local\Arduino15\packages\arduino\hardware\avr\<version>\cores\arduino`.
 
 Das „Hello World“ der Mikrocontroller‑Programmierung ist eine blinkende LED. Hier die einfache Version mit Kommentaren:
 

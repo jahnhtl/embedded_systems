@@ -27,6 +27,11 @@ Beispiel (1 MHz, 8‑Bit‑Timer): größere Prescaler erhöhen die Reichweite,
 
 Hinweis: Ist kein Prescaler‑Bit gesetzt, steht der Timer. Für „kein Prescaler“: `CS00` setzen.
 
+TODO: https://dbuezas.github.io/arduino-web-timers/#mcu=ATMEGA328P&timer=0&topValue=0xFF&FCPU_UI=16Mhz&clockPrescalerOrSource=1&timerMode=FPWM&CompareOutputModeA=clear-on-match%2C+set-at-max&OCR0A=2
+
+TODO: Übungsbeispiele - Timer Konfiguration
+
+
 ## Betriebsarten
 
 Vier Grundmodi (u. a. Normal, CTC, Fast PWM, Phase‑Correct PWM):
@@ -43,7 +48,6 @@ Polling‑Variante (zu schnell fürs Auge):
 
 ```c
 #include <avr/io.h>
-#include "bit_macros.h"
 
 #define LED_DDR  DDRB
 #define LED_PORT PORTB
@@ -51,15 +55,15 @@ Polling‑Variante (zu schnell fürs Auge):
 
 int main(void)
 {
-  SET_BIT(LED_DDR, LED_PIN);
-  SET_BIT(TCCR0B, CS00);    // Prescaler 1024
-  SET_BIT(TCCR0B, CS02);
+  LED_DDR |= (1 << LED_PIN);
+  TCCR0B |= (1 << CS00);    // Prescaler 1024
+  TCCR0B |= (1 << CS02);
   TCNT0 = 0;
 
   while (1) {
-    if (GET_BIT(TIFR0, TOV0) == 1) {
-      TOGGLE_BIT(LED_PORT, LED_PIN);
-      SET_BIT(TIFR0, TOV0); // Flag per 1 zurücksetzen
+    if (TIFR0 & (1 << TOV0)) {
+      LED_PORT ^= (1 << LED_PIN);
+      TIFR0 |= (1 << TOV0); // Flag per 1 zurücksetzen
     }
   }
 }
@@ -71,12 +75,12 @@ Mit Zählen der Overflows (ca. 500 ms):
 uint8_t counter = 0;
 ...
 while (1) {
-  if (GET_BIT(TIFR0, TOV0) == 1) {
+  if (TIFR0 & (1 << TOV0)) {
     counter++;
-    SET_BIT(TIFR0, TOV0);
+    TIFR0 |= (1 << TOV0);
   }
   if (counter >= 30) {
-    TOGGLE_BIT(LED_PORT, LED_PIN);
+    LED_PORT ^= (1 << LED_PIN);
     counter = 0;
   }
 }
@@ -89,7 +93,6 @@ Interrupt‑Variante: `TOIE0` in `TIMSK0` setzen; ISR löscht das Flag automatis
 ```c
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "bit_macros.h"
 
 #define LED_DDR  DDRB
 #define LED_PORT PORTB
@@ -100,17 +103,17 @@ ISR(TIMER0_OVF_vect)
   static uint8_t counter;
   counter++;
   if (counter >= 30) {
-    TOGGLE_BIT(LED_PORT, LED_PIN);
+    LED_PORT ^= (1 << LED_PIN);
     counter = 0;
   }
 }
 
 int main(void)
 {
-  SET_BIT(LED_DDR, LED_PIN);
-  SET_BIT(TCCR0B, CS00);
-  SET_BIT(TCCR0B, CS02);
-  SET_BIT(TIMSK0, TOIE0);
+  LED_DDR |= (1 << LED_PIN);
+  TCCR0B |= (1 << CS00);
+  TCCR0B |= (1 << CS02);
+  TIMSK0 |= (1 << TOIE0);
   sei();
   while (1) { /* Hauptschleife frei für andere Aufgaben */ }
 }
