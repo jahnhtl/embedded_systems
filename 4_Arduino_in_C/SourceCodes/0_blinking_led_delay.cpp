@@ -21,7 +21,9 @@ int main(void)
 
   while (1)
   {
-    PORTB ^= (1 << PB5);    // toggle LED on/off
+    PORTB |= (1 << PB5);    // toggle LED on/off
+    _delay_ms(500);         // CPU blocked for 500ms doing nothing
+    PORTB &= ~(1 << PB5);   // toggle LED on/off
     _delay_ms(500);         // CPU blocked for 500ms doing nothing
   }
 
