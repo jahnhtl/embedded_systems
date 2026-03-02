@@ -40,8 +40,13 @@ volatile uint8_t taster2_flag = 0;
 uint8_t stufen[5] = {0, 64, 128, 191, 255};
 uint8_t stufe = 0;
 
-ISR(INT0_vect) { taster1_flag = 1; }
-ISR(INT1_vect) { taster2_flag = 1; }
+ISR(INT0_vect) {
+    taster1_flag = 1;
+}
+
+ISR(INT1_vect) {
+    taster2_flag = 1;
+}
 
 void gpio_init(void) {
     DDRD &= ~((1 << PD2) | (1 << PD3));
@@ -57,8 +62,10 @@ void timer0_pwm_init(void) {
 }
 
 void interrupt_init(void) {
-    EICRA |= (1 << ISC01); EICRA &= ~(1 << ISC00);   // INT0 fallende Flanke
-    EICRA |= (1 << ISC11); EICRA &= ~(1 << ISC10);   // INT1 fallende Flanke
+    EICRA |=  (1 << ISC01);   // INT0 fallende Flanke
+    EICRA &= ~(1 << ISC00);
+    EICRA |=  (1 << ISC11);   // INT1 fallende Flanke
+    EICRA &= ~(1 << ISC10);
     EIMSK |= (1 << INT0) | (1 << INT1);
 }
 
@@ -86,14 +93,20 @@ int main(void) {
         if (taster1_flag) {
             taster1_flag = 0;
             if (debounce_pind(PD2)) {
-                if (stufe < 4) { stufe++; OCR0A = stufen[stufe]; }
+                if (stufe < 4) {
+                    stufe++;
+                    OCR0A = stufen[stufe];
+                }
                 update_leds();
             }
         }
         if (taster2_flag) {
             taster2_flag = 0;
             if (debounce_pind(PD3)) {
-                if (stufe > 0) { stufe--; OCR0A = stufen[stufe]; }
+                if (stufe > 0) {
+                    stufe--;
+                    OCR0A = stufen[stufe];
+                }
                 update_leds();
             }
         }

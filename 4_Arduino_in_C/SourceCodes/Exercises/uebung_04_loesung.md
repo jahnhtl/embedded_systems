@@ -90,8 +90,10 @@ int main(void) {
 
     uart_init();
 
-    EICRA |=  (1 << ISC01); EICRA &= ~(1 << ISC00);  // INT0 fallende Flanke
-    EICRA |=  (1 << ISC11); EICRA &= ~(1 << ISC10);  // INT1 fallende Flanke
+    EICRA |=  (1 << ISC01);   // INT0 fallende Flanke
+    EICRA &= ~(1 << ISC00);
+    EICRA |=  (1 << ISC11);   // INT1 fallende Flanke
+    EICRA &= ~(1 << ISC10);
     EIMSK |= (1 << INT0) | (1 << INT1);
     sei();
 
@@ -101,13 +103,17 @@ int main(void) {
         if (taster1_flag) {
             if (debounce(&taster1_flag, PD2)) {
                 if (zaehler < 255) zaehler++;
-                uart_puts("Zaehler: "); uart_put_uint8(zaehler); uart_puts("\n");
+                uart_puts("Zaehler: ");
+                uart_put_uint8(zaehler);
+                uart_puts("\n");
             }
         }
         if (taster2_flag) {
             if (debounce(&taster2_flag, PD3)) {
                 if (zaehler > 0) zaehler--;
-                uart_puts("Zaehler: "); uart_put_uint8(zaehler); uart_puts("\n");
+                uart_puts("Zaehler: ");
+                uart_put_uint8(zaehler);
+                uart_puts("\n");
             }
         }
         if (zaehler > 0) PORTD |=  (1 << PD4);

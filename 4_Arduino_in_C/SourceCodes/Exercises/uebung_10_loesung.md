@@ -90,8 +90,10 @@ void timer1_init(void) {
 }
 
 void interrupt_init(void) {
-    EICRA |= (1 << ISC01); EICRA &= ~(1 << ISC00);
-    EICRA |= (1 << ISC11); EICRA &= ~(1 << ISC10);
+    EICRA |=  (1 << ISC01);
+    EICRA &= ~(1 << ISC00);
+    EICRA |=  (1 << ISC11);
+    EICRA &= ~(1 << ISC10);
     EIMSK |= (1 << INT0) | (1 << INT1);
 }
 
@@ -102,7 +104,10 @@ void update_leds(void) {
 
 uint8_t debounce_pind(uint8_t pin) {
     _delay_ms(20);
-    if (!(PIND & (1 << pin))) { while (!(PIND & (1 << pin))); return 1; }
+    if (!(PIND & (1 << pin))) {
+        while (!(PIND & (1 << pin)));
+        return 1;
+    }
     return 0;
 }
 
@@ -114,21 +119,33 @@ void reset_timeout(void) {
 }
 
 int main(void) {
-    gpio_init(); timer0_pwm_init(); timer1_init(); interrupt_init(); sei();
+    gpio_init();
+    timer0_pwm_init();
+    timer1_init();
+    interrupt_init();
+    sei();
 
     while (1) {
         if (taster_auf_flag) {
             taster_auf_flag = 0;
             if (debounce_pind(PD2)) {
-                if (stufe < 4) { stufe++; OCR0B = stufen[stufe]; }
-                reset_timeout(); update_leds();
+                if (stufe < 4) {
+                    stufe++;
+                    OCR0B = stufen[stufe];
+                }
+                reset_timeout();
+                update_leds();
             }
         }
         if (taster_ab_flag) {
             taster_ab_flag = 0;
             if (debounce_pind(PD3)) {
-                if (stufe > 0) { stufe--; OCR0B = stufen[stufe]; }
-                reset_timeout(); update_leds();
+                if (stufe > 0) {
+                    stufe--;
+                    OCR0B = stufen[stufe];
+                }
+                reset_timeout();
+                update_leds();
             }
         }
         if (TIFR1 & (1 << TOV1)) {
@@ -140,7 +157,8 @@ int main(void) {
                 overflow_zaehler++;
                 if (overflow_zaehler >= 30) {  // 30 × 0,5 s = 15 s
                     timeout_aktiv = 1;
-                    stufe = 0; OCR0B = stufen[stufe];
+                    stufe = 0;
+                    OCR0B = stufen[stufe];
                     update_leds();
                 }
             }

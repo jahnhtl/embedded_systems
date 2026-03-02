@@ -79,8 +79,10 @@ void timer1_init(void) {
 }
 
 void interrupt_init(void) {
-    EICRA |= (1 << ISC01); EICRA &= ~(1 << ISC00);
-    EICRA |= (1 << ISC11); EICRA &= ~(1 << ISC10);
+    EICRA |=  (1 << ISC01);
+    EICRA &= ~(1 << ISC00);
+    EICRA |=  (1 << ISC11);
+    EICRA &= ~(1 << ISC10);
     EIMSK |= (1 << INT0) | (1 << INT1);
 }
 
@@ -91,7 +93,10 @@ void update_status_led(void) {
 
 uint8_t debounce_pind(uint8_t pin) {
     _delay_ms(20);
-    if (!(PIND & (1 << pin))) { while (!(PIND & (1 << pin))); return 1; }
+    if (!(PIND & (1 << pin))) {
+        while (!(PIND & (1 << pin)));
+        return 1;
+    }
     return 0;
 }
 
@@ -103,21 +108,33 @@ void reset_timeout(void) {
 }
 
 int main(void) {
-    gpio_init(); timer0_pwm_init(); timer1_init(); interrupt_init(); sei();
+    gpio_init();
+    timer0_pwm_init();
+    timer1_init();
+    interrupt_init();
+    sei();
 
     while (1) {
         if (taster1_flag) {
             taster1_flag = 0;
             if (debounce_pind(PD2)) {
-                if (stufe < 4) { stufe++; OCR0A = stufen[stufe]; }
-                reset_timeout(); update_status_led();
+                if (stufe < 4) {
+                    stufe++;
+                    OCR0A = stufen[stufe];
+                }
+                reset_timeout();
+                update_status_led();
             }
         }
         if (taster2_flag) {
             taster2_flag = 0;
             if (debounce_pind(PD3)) {
-                if (stufe > 0) { stufe--; OCR0A = stufen[stufe]; }
-                reset_timeout(); update_status_led();
+                if (stufe > 0) {
+                    stufe--;
+                    OCR0A = stufen[stufe];
+                }
+                reset_timeout();
+                update_status_led();
             }
         }
         if (TIFR1 & (1 << TOV1)) {
@@ -127,9 +144,10 @@ int main(void) {
                 PORTD ^= (1 << PD7);   // LED_ROT toggeln → 1 Hz
             } else {
                 overflow_zaehler++;
-                if (overflow_zaehler >= 0) {
+                if (overflow_zaehler >= 60) {
                     timeout_aktiv = 1;
-                    stufe = 0; OCR0A = stufen[stufe];
+                    stufe = 0;
+                    OCR0A = stufen[stufe];
                     update_status_led();
                 }
             }

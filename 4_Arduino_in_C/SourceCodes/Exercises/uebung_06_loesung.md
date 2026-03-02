@@ -54,11 +54,17 @@ int main(void) {
 
     while (1) {
         if (!(PIND & (1 << PD2))) {
-            if (stufe < 4) { stufe++; OCR0A = stufen[stufe]; }
+            if (stufe < 4) {
+                stufe++;
+                OCR0A = stufen[stufe];
+            }
             _delay_ms(200);
         }
         if (!(PIND & (1 << PD3))) {
-            if (stufe > 0) { stufe--; OCR0A = stufen[stufe]; }
+            if (stufe > 0) {
+                stufe--;
+                OCR0A = stufen[stufe];
+            }
             _delay_ms(200);
         }
         if (stufe > 0) PORTD |=  (1 << PD4);
