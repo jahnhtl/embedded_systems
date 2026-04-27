@@ -95,30 +95,6 @@ In der Hauptschleife:
 
 Statt die CPU mit `_delay_ms` zu blockieren, übernimmt **Timer1 im CTC-Mode** die Entprellzeit. Die gesamte Logik steckt in zwei ISRs – die Hauptschleife bleibt vollständig frei.
 
-Ein **Zustandsautomat** mit 4 Zuständen steuert den Ablauf:
-
-```
-                 INT0 (fallend)
-  ┌──────────────────────────────────────────────────────────┐
-  │                                                          │
-  ▼                                                          │
-IDLE ──[INT0↓]──► DEBOUNCE_PRESS ──[Timer 20 ms]──► pin LOW?
-                                                      │       │
-                                                   ja │    nein│ (Fehlauslösung)
-                                                      ▼       ▼
-                                                  PRESSED   IDLE
-                                                      │
-                                             [INT0↑]──┘
-                                                      │
-                                                      ▼
-                                              DEBOUNCE_RELEASE ──[Timer 20 ms]──► pin HIGH?
-                                                                                    │       │
-                                                                                 ja │    nein│
-                                                                                    ▼       ▼
-                                                                                  IDLE  PRESSED
-```
-
-
 ### Fragen zu Übung 9
 
 > **Hinweis:** Die Antworten sind im Abgabe-Dokument schriftlich festzuhalten.
