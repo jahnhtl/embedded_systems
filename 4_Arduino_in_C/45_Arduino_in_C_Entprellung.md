@@ -118,120 +118,6 @@ IDLE ──[INT0↓]──► DEBOUNCE_PRESS ──[Timer 20 ms]──► pin LO
                                                                                   IDLE  PRESSED
 ```
 
-**Zeitberechnung (20 ms Entprellzeit):**
-```
-f_CPU = 16 MHz, Prescaler 1024  →  f_Timer = 15.625 kHz
-Ticks = 15625 × 0,020 = 312     →  OCR1A = 312 − 1 = 311
-Tatsächliche Zeit: 312 / 15625 = 19,97 ms  (Fehler < 0,2 %)
-```
-
-### Quellcode
-
-```c
-#include <Arduino.h>
-#include <avr/interrupt.h>
-
-// INT0 = PD2 (Arduino Pin 2) -> Taster (mit Pull-up, low-aktiv)
-// LED  = PB5 (Arduino Pin 13, onboard LED)
-
-#define DEBOUNCE_OCR  311    // OCR1A fuer ~20 ms (Prescaler 1024, 16 MHz)
-
-typedef enum { IDLE, DEBOUNCE_PRESS, PRESSED, DEBOUNCE_RELEASE } State;
-static volatile State state = IDLE;
-
-static void timer1_start(void)
-{
-  TCNT1  = 0;
-  OCR1A  = DEBOUNCE_OCR;
-  TCCR1A = 0;
-  TCCR1B = (1 << WGM12) | (1 << CS12) | (1 << CS10); // CTC, Prescaler 1024
-  TIFR1  |= (1 << OCF1A);                             // pending Flag loeschen
-  TIMSK1 |= (1 << OCIE1A);                            // Compare-Match freigeben
-}
-
-static void timer1_stop(void)
-{
-  TCCR1B  = 0;
-  TIMSK1 &= ~(1 << OCIE1A);
-}
-
-static void int0_enable_falling(void)
-{
-  EICRA |=  (1 << ISC01);
-  EICRA &= ~(1 << ISC00);  // fallende Flanke
-  EIFR  |=  (1 << INTF0);  // pending Flag loeschen
-  EIMSK |=  (1 << INT0);
-}
-
-static void int0_enable_rising(void)
-{
-  EICRA |= (1 << ISC01) | (1 << ISC00);  // steigende Flanke
-  EIFR  |= (1 << INTF0);
-  EIMSK |= (1 << INT0);
-}
-
-// INT0: Flanke erkannt -> INT0 sperren, Entprell-Timer starten
-ISR(INT0_vect)
-{
-  EIMSK &= ~(1 << INT0);  // INT0 deaktivieren
-
-  if (state == IDLE)
-    state = DEBOUNCE_PRESS;
-  else if (state == PRESSED)
-    state = DEBOUNCE_RELEASE;
-
-  timer1_start();
-}
-
-// Timer1 Compare-Match: 20 ms abgelaufen -> Pin-Zustand pruefen
-ISR(TIMER1_COMPA_vect)
-{
-  timer1_stop();
-
-  if (state == DEBOUNCE_PRESS)
-  {
-    if (!(PIND & (1 << PD2)))    // Taster noch gedrueckt (LOW)?
-    {
-      PORTB ^= (1 << PB5);       // LED toggeln
-      state = PRESSED;
-      int0_enable_rising();      // auf Loslassen warten
-    }
-    else                         // Fehlausloesung: kein echter Druck
-    {
-      state = IDLE;
-      int0_enable_falling();
-    }
-  }
-  else if (state == DEBOUNCE_RELEASE)
-  {
-    if (PIND & (1 << PD2))       // Taster stabil losgelassen (HIGH)?
-    {
-      state = IDLE;
-      int0_enable_falling();
-    }
-    else                         // noch gedrueckt: weiter warten
-    {
-      state = PRESSED;
-      int0_enable_rising();
-    }
-  }
-}
-
-int main(void)
-{
-  DDRB  |= (1 << PB5);    // PB5 als Ausgang (LED)
-  DDRD  &= ~(1 << PD2);   // PD2 als Eingang
-  PORTD |=  (1 << PD2);   // interner Pull-up
-
-  int0_enable_falling();
-  sei();
-
-  while (true)
-  {
-    // Hauptschleife vollstaendig frei - gesamte Logik in ISRs
-  }
-}
-```
 
 ### Fragen zu Übung 9
 
@@ -239,7 +125,7 @@ int main(void)
 
 1. **Zeitberechnung:** Berechne `DEBOUNCE_OCR` selbst: Welcher Wert ergibt sich für eine Entprellzeit von 20 ms bei 16 MHz und Prescaler 1024? Zeige jeden Rechenschritt.
 
-2. **Zustandsautomat:** Beschreibe den Ablauf in eigenen Worten: Was passiert vom ersten Tastendruck bis zum Loslassen? Gehe dabei auf alle 4 Zustände ein.
+2. **Zustandsautomat:** Beschreibe den Ablauf in eigenen Worten: Was passiert vom ersten Tastendruck bis zum Loslassen? Gehe dabei auf alle 4 Zustände ein. Zeichne ein eigenes Flussdiagramm und füge dieses in die Abgabe mit ein.
 
 3. **INT0 deaktivieren:** In `INT0_vect` wird sofort `EIMSK &= ~(1 << INT0)` ausgeführt. Warum ist das notwendig? Was würde ohne diese Zeile passieren?
 
@@ -276,43 +162,3 @@ Abgabe: Moodle → Kurs Embedded Systems → Aufgabe „Entprellung"
 
 > **Abgabefrist:** nächste Unterrichtsstunde
 
----
-
-## Anhang: Registerübersicht
-
-### EICRA – External Interrupt Control Register A
-
-| Bit | Name  | Funktion |
-|-----|-------|----------|
-| 3   | ISC11 | INT1 Flankenkonfiguration |
-| 2   | ISC10 | INT1 Flankenkonfiguration |
-| 1   | ISC01 | INT0 Flankenkonfiguration |
-| 0   | ISC00 | INT0 Flankenkonfiguration |
-
-Konfiguration INT0:
-
-| ISC01 | ISC00 | Auslösung |
-|-------|-------|-----------|
-| 0     | 0     | Low-Level |
-| 0     | 1     | Jede Flanke |
-| 1     | 0     | Fallende Flanke |
-| 1     | 1     | Steigende Flanke |
-
-### EIMSK – External Interrupt Mask Register
-
-| Bit | Name | Funktion |
-|-----|------|----------|
-| 1   | INT1 | Aktiviert INT1 |
-| 0   | INT0 | Aktiviert INT0 |
-
-```c
-EIMSK |= (1 << INT0);   // INT0 aktivieren
-```
-
-### PIND – Port D Input Pins Register
-
-Lesen des aktuellen Pegels an PD2:
-```c
-if (!(PIND & (1 << PD2)))   // LOW → Taster gedrückt
-if  (PIND & (1 << PD2))     // HIGH → Taster losgelassen
-```
